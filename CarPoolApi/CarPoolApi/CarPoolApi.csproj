@@ -10,7 +10,7 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.14" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.0" />
     <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.42.0" />
   </ItemGroup>
 
@@ -19,11 +19,19 @@
     <None Remove="Infrastructure\" />
     <None Remove="Application\" />
     <None Remove="API\" />
+    <None Remove="Core\Enums\" />
+    <None Remove="Application\DTOs\" />
+    <None Remove="Application\Interfaces\" />
+    <None Remove="Application\Services\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\" />
     <Folder Include="Infrastructure\" />
     <Folder Include="Application\" />
     <Folder Include="API\" />
+    <Folder Include="Core\Enums\" />
+    <Folder Include="Application\DTOs\" />
+    <Folder Include="Application\Interfaces\" />
+    <Folder Include="Application\Services\" />
   </ItemGroup>
 </Project>

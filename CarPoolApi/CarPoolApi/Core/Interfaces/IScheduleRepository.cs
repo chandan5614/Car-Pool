@@ -1,4 +1,11 @@
-﻿public interface IScheduleRepository : IRepository<Schedule>
+﻿using Core.Interfaces;
+using Entities.DTOs;
+
+namespace Core.Interfaces
 {
-    Task<IEnumerable<Schedule>> GetSchedulesByUserAsync(Guid userId);
+
+    public interface IScheduleRepository : IRepository<Schedule>
+    {
+        Task<IEnumerable<Schedule>> GetSchedulesByUserAsync(Guid userId);
+    }
 }

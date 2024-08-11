@@ -1,4 +1,10 @@
-﻿public interface IUserRepository : IRepository<User>
+﻿using Core.Interfaces;
+using Entities.DTOs;
+
+namespace Core.Interfaces
 {
-    Task<User> GetByEmailAsync(string email);
+    public interface IUserRepository : IRepository<User>
+    {
+        Task<User> GetByEmailAsync(string email);
+    }
 }

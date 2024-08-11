@@ -1,4 +1,9 @@
-﻿public interface IPaymentRepository : IRepository<Payment>
+﻿using Entities.DTOs;
+
+namespace Core.Interfaces
 {
-    Task<Payment> GetPaymentByRideAndUserAsync(Guid rideId, Guid userId);
+    public interface IPaymentRepository : IRepository<Payment>
+    {
+        Task<Payment> GetPaymentByRideAndUserAsync(Guid rideId, Guid userId);
+    }
 }

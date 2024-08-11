@@ -1,4 +1,9 @@
-﻿public interface IReportRepository : IRepository<Report>
+﻿using Entities.DTOs;
+
+namespace Core.Interfaces
 {
-    Task<IEnumerable<Report>> GetReportsByUserAsync(Guid userId);
+    public interface IReportRepository : IRepository<Report>
+    {
+        Task<IEnumerable<Report>> GetReportsByUserAsync(Guid userId);
+    }
 }

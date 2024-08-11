@@ -1,5 +1,11 @@
-﻿public interface IRideRepository : IRepository<Ride>
+﻿using Core.Interfaces;
+using Entities.DTOs;
+
+namespace Core.Interfaces
 {
-    Task<IEnumerable<Ride>> GetRidesByDriverAsync(Guid driverId);
-    Task<IEnumerable<Ride>> SearchRidesAsync(string startLocation, string endLocation);
+    public interface IRideRepository : IRepository<Ride>
+    {
+        Task<IEnumerable<Ride>> GetRidesByDriverAsync(Guid driverId);
+        Task<IEnumerable<Ride>> SearchRidesAsync(string startLocation, string endLocation);
+    }
 }

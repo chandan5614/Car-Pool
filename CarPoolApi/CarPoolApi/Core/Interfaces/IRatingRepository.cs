@@ -1,4 +1,9 @@
-﻿public interface IRatingRepository : IRepository<Rating>
+﻿using Entities.DTOs;
+
+namespace Core.Interfaces
 {
-    Task<IEnumerable<Rating>> GetRatingsByRideAsync(Guid rideId);
+    public interface IRatingRepository : IRepository<Rating>
+    {
+        Task<IEnumerable<Rating>> GetRatingsByRideAsync(Guid rideId);
+    }
 }
