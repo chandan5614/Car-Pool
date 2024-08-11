@@ -12,6 +12,8 @@
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.14" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.7.0" />
     <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.42.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.0.1" />
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.0.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -23,6 +25,10 @@
     <None Remove="Application\DTOs\" />
     <None Remove="Application\Interfaces\" />
     <None Remove="Application\Services\" />
+    <None Remove="Infrastructure\Repositories\" />
+    <None Remove="Infrastructure\Repositories\Implementations\" />
+    <None Remove="Infrastructure\Services\" />
+    <None Remove="Infrastructure\Services\Implementations\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\" />
@@ -33,5 +39,9 @@
     <Folder Include="Application\DTOs\" />
     <Folder Include="Application\Interfaces\" />
     <Folder Include="Application\Services\" />
+    <Folder Include="Infrastructure\Repositories\" />
+    <Folder Include="Infrastructure\Repositories\Implementations\" />
+    <Folder Include="Infrastructure\Services\" />
+    <Folder Include="Infrastructure\Services\Implementations\" />
   </ItemGroup>
 </Project>
