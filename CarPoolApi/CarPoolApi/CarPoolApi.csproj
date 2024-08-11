@@ -29,6 +29,8 @@
     <None Remove="Infrastructure\Repositories\Implementations\" />
     <None Remove="Infrastructure\Services\" />
     <None Remove="Infrastructure\Services\Implementations\" />
+    <None Remove="API\Controllers\" />
+    <None Remove="API\Models\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\" />
@@ -43,5 +45,7 @@
     <Folder Include="Infrastructure\Repositories\Implementations\" />
     <Folder Include="Infrastructure\Services\" />
     <Folder Include="Infrastructure\Services\Implementations\" />
+    <Folder Include="API\Controllers\" />
+    <Folder Include="API\Models\" />
   </ItemGroup>
 </Project>
