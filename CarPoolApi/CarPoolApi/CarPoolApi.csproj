@@ -11,6 +11,19 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.14" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+    <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.42.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Core\" />
+    <None Remove="Infrastructure\" />
+    <None Remove="Application\" />
+    <None Remove="API\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Core\" />
+    <Folder Include="Infrastructure\" />
+    <Folder Include="Application\" />
+    <Folder Include="API\" />
+  </ItemGroup>
 </Project>

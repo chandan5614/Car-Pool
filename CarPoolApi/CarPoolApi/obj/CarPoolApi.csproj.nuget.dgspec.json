@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/chandan/Projects/Dev/Car-Pool/CarPoolApi/CarPoolApi/CarPoolApi.csproj": {}
+    "/Users/chandan/Projects/Dev/Car Pool/Car-Pool/CarPoolApi/CarPoolApi/CarPoolApi.csproj": {}
   },
   "projects": {
-    "/Users/chandan/Projects/Dev/Car-Pool/CarPoolApi/CarPoolApi/CarPoolApi.csproj": {
+    "/Users/chandan/Projects/Dev/Car Pool/Car-Pool/CarPoolApi/CarPoolApi/CarPoolApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/chandan/Projects/Dev/Car-Pool/CarPoolApi/CarPoolApi/CarPoolApi.csproj",
+        "projectUniqueName": "/Users/chandan/Projects/Dev/Car Pool/Car-Pool/CarPoolApi/CarPoolApi/CarPoolApi.csproj",
         "projectName": "CarPoolApi",
-        "projectPath": "/Users/chandan/Projects/Dev/Car-Pool/CarPoolApi/CarPoolApi/CarPoolApi.csproj",
+        "projectPath": "/Users/chandan/Projects/Dev/Car Pool/Car-Pool/CarPoolApi/CarPoolApi/CarPoolApi.csproj",
         "packagesPath": "/Users/chandan/.nuget/packages/",
-        "outputPath": "/Users/chandan/Projects/Dev/Car-Pool/CarPoolApi/CarPoolApi/obj/",
+        "outputPath": "/Users/chandan/Projects/Dev/Car Pool/Car-Pool/CarPoolApi/CarPoolApi/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/chandan/.nuget/NuGet/NuGet.Config"
@@ -42,6 +42,10 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.14, )"
+            },
+            "Microsoft.Azure.Cosmos": {
+              "target": "Package",
+              "version": "[3.42.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

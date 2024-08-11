@@ -1,0 +1,4 @@
+﻿public interface IReportRepository : IRepository<Report>
+{
+    Task<IEnumerable<Report>> GetReportsByUserAsync(Guid userId);
+}
