@@ -19,10 +19,4 @@
         public string EndLocation { get; set; }
         public List<string> Stops { get; set; }
     }
-
-    public class Booking
-    {
-        public Guid UserId { get; set; }
-        public BookingStatus Status { get; set; }
-    }
 }

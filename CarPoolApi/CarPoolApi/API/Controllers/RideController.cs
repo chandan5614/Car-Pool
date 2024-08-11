@@ -18,7 +18,7 @@ namespace API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetRideById(string id)
+        public async Task<IActionResult> GetRideById(Guid id)
         {
             var ride = await _rideService.GetRideByIdAsync(id);
             if (ride == null) return NotFound();

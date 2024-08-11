@@ -1,14 +1,17 @@
 ﻿using Application.DTOs;
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Application.Interfaces
 {
     public interface IRideService
     {
-        Task<RideDto> GetRideByIdAsync(string rideId);
+        Task<RideDto> GetRideByIdAsync(Guid rideId);
         Task<IEnumerable<RideDto>> GetAllRidesAsync();
         Task AddRideAsync(RideDto ride);
         Task UpdateRideAsync(RideDto ride);
-        Task DeleteRideAsync(string rideId);
-        Task BookRideAsync(string rideId, string userId);
+        Task DeleteRideAsync(Guid rideId);
+        Task BookRideAsync(Guid rideId, Guid userId);
     }
 }
