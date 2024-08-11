@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace Application.Interfaces
+﻿namespace Application.Interfaces
 {
     public interface INotificationService
     {

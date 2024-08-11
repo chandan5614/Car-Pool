@@ -1,5 +1,4 @@
-﻿using System;
-namespace CarPoolApi.API.Models
+﻿namespace CarPoolApi.API.Models
 {
     public class LoginModel
     {

@@ -3,8 +3,6 @@ using System.Security.Claims;
 using System.Text;
 using Application.DTOs;
 using Application.Interfaces;
-using Infrastructure.Services.Implementations;
-using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Infrastructure.Services.Implementations

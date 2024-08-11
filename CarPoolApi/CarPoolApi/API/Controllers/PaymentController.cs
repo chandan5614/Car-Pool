@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Application.Interfaces;
 using Application.DTOs;
-using System.Threading.Tasks;
 
 namespace API.Controllers
 {

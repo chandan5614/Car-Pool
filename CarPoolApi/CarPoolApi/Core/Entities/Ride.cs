@@ -1,6 +1,5 @@
 ﻿namespace Entities.DTOs
 {
-
     public class Ride
     {
         public Guid RideId { get; set; }

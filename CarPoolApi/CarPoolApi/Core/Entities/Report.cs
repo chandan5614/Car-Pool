@@ -1,6 +1,5 @@
 ﻿namespace Entities.DTOs
 {
-
     public class Report
     {
         public Guid ReportId { get; set; }

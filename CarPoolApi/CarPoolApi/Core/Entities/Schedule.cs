@@ -1,6 +1,5 @@
 ﻿namespace Entities.DTOs
 {
-
     public class Schedule
     {
         public Guid ScheduleId { get; set; }

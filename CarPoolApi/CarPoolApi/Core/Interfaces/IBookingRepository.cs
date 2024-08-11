@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using Entities.DTOs;
+﻿using Entities.DTOs;
 
 namespace Core.Interfaces
 {

@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.Azure.Cosmos;
+﻿using Microsoft.Azure.Cosmos;
 using Core.Interfaces;
-using Entities.DTOs;
 
 namespace Infrastructure.Repositories.Implementations
 {
@@ -21,7 +16,7 @@ namespace Infrastructure.Repositories.Implementations
         {
             try
             {
-                var response = await _container.ReadItemAsync< Entities.DTOs.User >(id.ToString(), new PartitionKey(id.ToString()));
+                var response = await _container.ReadItemAsync<Entities.DTOs.User>(id.ToString(), new PartitionKey(id.ToString()));
                 return response.Resource;
             }
             catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
