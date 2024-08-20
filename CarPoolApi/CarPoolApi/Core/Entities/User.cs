@@ -8,6 +8,7 @@
         public UserRole Role { get; set; }
         public Vehicle VehicleDetails { get; set; }
         public ICollection<Rating> Ratings { get; set; }
+        public string PasswordHash { get; set; }
     }
 
     public class Vehicle

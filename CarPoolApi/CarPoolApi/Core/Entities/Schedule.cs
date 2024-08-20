@@ -3,10 +3,16 @@
     public class Schedule
     {
         public Guid ScheduleId { get; set; }
+        public string id
+        {
+            get => ScheduleId.ToString();
+            set {}
+        }
         public Guid UserId { get; set; }
         public string Semester { get; set; }
         public ICollection<Course> Courses { get; set; }
     }
+
 
     public class Course
     {

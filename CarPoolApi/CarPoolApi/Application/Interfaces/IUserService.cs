@@ -9,5 +9,7 @@ namespace Application.Interfaces
         Task AddUserAsync(UserDto user);
         Task UpdateUserAsync(UserDto user);
         Task DeleteUserAsync(string userId);
+        Task<UserDto> AuthenticateAsync(string email, string password);
+        Task<UserDto> RegisterAsync(string email, string password);
     }
 }

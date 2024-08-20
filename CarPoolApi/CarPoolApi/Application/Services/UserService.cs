@@ -1,21 +1,37 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Application.DTOs;
+﻿using Application.DTOs;
 using Application.Interfaces;
 using Core.Interfaces;
 using Entities.DTOs;
+using Microsoft.AspNetCore.Identity;
 
 namespace Application.Services.Implementations
 {
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+        private readonly IPasswordHasher<User> _passwordHasher;
 
-        public UserService(IUserRepository userRepository)
+        public UserService(IUserRepository userRepository, IPasswordHasher<User> passwordHasher)
         {
             _userRepository = userRepository;
+            _passwordHasher = passwordHasher;
+        }
+
+        public async Task<UserDto> AuthenticateAsync(string email, string password)
+        {
+            var user = await _userRepository.GetByEmailAsync(email);
+            if (user == null) return null;
+
+            var passwordVerificationResult = _passwordHasher.VerifyHashedPassword(user, user.PasswordHash, password);
+            return passwordVerificationResult == PasswordVerificationResult.Success ? MapToDto(user) : null;
+        }
+
+        public async Task<UserDto> RegisterAsync(string email, string password)
+        {
+            var user = new User { Email = email };
+            user.PasswordHash = _passwordHasher.HashPassword(user, password);
+            await _userRepository.AddAsync(user);
+            return MapToDto(user);
         }
 
         public async Task<UserDto> GetUserByIdAsync(string userId)
@@ -33,6 +49,7 @@ namespace Application.Services.Implementations
         public async Task AddUserAsync(UserDto userDto)
         {
             var user = MapToEntity(userDto);
+            user.PasswordHash = _passwordHasher.HashPassword(user, userDto.Password);
             await _userRepository.AddAsync(user);
         }
 

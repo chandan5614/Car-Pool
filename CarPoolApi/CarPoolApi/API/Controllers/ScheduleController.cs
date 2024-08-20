@@ -18,10 +18,26 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetScheduleById(string id)
         {
-            var schedule = await _scheduleService.GetScheduleByIdAsync(id);
-            if (schedule == null) return NotFound();
-            return Ok(schedule);
+            try
+            {
+                if (!Guid.TryParse(id, out var scheduleGuid))
+                {
+                    return BadRequest(new { error = "The provided Schedule ID is not in a valid GUID format." });
+                }
+
+                var schedule = await _scheduleService.GetScheduleByIdAsync(id);
+                if (schedule == null)
+                {
+                    return NotFound();
+                }
+                return Ok(schedule);
+            }
+            catch (FormatException ex)
+            {
+                return BadRequest(new { error = ex.Message });
+            }
         }
+
 
         [HttpGet]
         public async Task<IActionResult> GetAllSchedules()
