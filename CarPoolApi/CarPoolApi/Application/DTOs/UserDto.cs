@@ -8,10 +8,7 @@
         public string Role { get; set; } // "student", "driver", "admin"
         public VehicleDetailsDto VehicleDetails { get; set; }
         public IEnumerable<RatingDto> Ratings { get; set; }
-<<<<<<< HEAD
         public string Password { get; set; }
-=======
->>>>>>> origin/dev
     }
 
     public class VehicleDetailsDto

@@ -21,12 +21,7 @@ namespace Infrastructure.Repositories.Implementations
             }
             catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
-<<<<<<< HEAD
-                // Handle not found case
-                return null;
-=======
                 return null; // Handle not found case
->>>>>>> origin/dev
             }
         }
 

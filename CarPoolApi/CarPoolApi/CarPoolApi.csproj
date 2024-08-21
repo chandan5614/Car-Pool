@@ -14,12 +14,10 @@
     <PackageReference Include="Microsoft.Azure.Cosmos" Version="3.42.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.0.1" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="8.0.1" />
-<<<<<<< HEAD
     <PackageReference Include="Microsoft.AspNetCore.Authentication.AzureADB2C.UI" Version="6.0.33" />
     <PackageReference Include="Microsoft.Identity.Web" Version="3.0.1" />
     <PackageReference Include="DotNetEnv" Version="3.1.1" />
-=======
->>>>>>> origin/dev
+
   </ItemGroup>
 
   <ItemGroup>
@@ -33,18 +31,15 @@
     <None Remove="Application\Services\" />
     <None Remove="Infrastructure\Repositories\" />
     <None Remove="Infrastructure\Repositories\Implementations\" />
-<<<<<<< HEAD
     <None Remove="API\Controllers\" />
     <None Remove="API\Models\" />
     <None Remove="Utils\" />
     <None Remove="Utils\Helpers\" />
     <None Remove=".env" />
-=======
     <None Remove="Infrastructure\Services\" />
     <None Remove="Infrastructure\Services\Implementations\" />
     <None Remove="API\Controllers\" />
     <None Remove="API\Models\" />
->>>>>>> origin/dev
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\" />
@@ -57,7 +52,6 @@
     <Folder Include="Application\Services\" />
     <Folder Include="Infrastructure\Repositories\" />
     <Folder Include="Infrastructure\Repositories\Implementations\" />
-<<<<<<< HEAD
     <Folder Include="API\Controllers\" />
     <Folder Include="API\Models\" />
     <Folder Include="Utils\" />
@@ -65,11 +59,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Remove="appsettings.Development.json" />
-=======
     <Folder Include="Infrastructure\Services\" />
     <Folder Include="Infrastructure\Services\Implementations\" />
     <Folder Include="API\Controllers\" />
     <Folder Include="API\Models\" />
->>>>>>> origin/dev
   </ItemGroup>
 </Project>

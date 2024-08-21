@@ -55,13 +55,10 @@
               "target": "Package",
               "version": "[3.42.0, )"
             },
-<<<<<<< HEAD
             "Microsoft.Identity.Web": {
               "target": "Package",
               "version": "[3.0.1, )"
             },
-=======
->>>>>>> origin/dev
             "Microsoft.IdentityModel.Tokens": {
               "target": "Package",
               "version": "[8.0.1, )"
