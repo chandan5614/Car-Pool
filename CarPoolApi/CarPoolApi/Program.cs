@@ -23,7 +23,6 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 // JWT Authentication configuration
-// JWT Authentication configuration
 var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET");
 if (string.IsNullOrEmpty(jwtSecret))
 {
@@ -155,6 +154,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// CORS configuration
+app.UseCors(builder =>
+    builder.AllowAnyOrigin()
+           .AllowAnyMethod()
+           .AllowAnyHeader());
 
 app.UseHttpsRedirection();
 app.UseAuthentication();
