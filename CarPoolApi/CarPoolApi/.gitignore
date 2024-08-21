@@ -76,7 +76,6 @@ appsettings.Local.json
 appsettings.Production.json
 appsettings.Staging.json
 appsettings.Test.json
-appsettings.json
 
 # Ignore published files
 publish/
