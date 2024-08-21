@@ -18,6 +18,7 @@ namespace API.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetScheduleById(string id)
         {
+<<<<<<< HEAD
             try
             {
                 if (!Guid.TryParse(id, out var scheduleGuid))
@@ -39,6 +40,13 @@ namespace API.Controllers
         }
 
 
+=======
+            var schedule = await _scheduleService.GetScheduleByIdAsync(id);
+            if (schedule == null) return NotFound();
+            return Ok(schedule);
+        }
+
+>>>>>>> origin/dev
         [HttpGet]
         public async Task<IActionResult> GetAllSchedules()
         {

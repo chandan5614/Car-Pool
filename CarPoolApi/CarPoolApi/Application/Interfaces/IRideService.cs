@@ -1,4 +1,10 @@
 ﻿using Application.DTOs;
+<<<<<<< HEAD
+=======
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+>>>>>>> origin/dev
 
 namespace Application.Interfaces
 {

@@ -1,14 +1,26 @@
+<<<<<<< HEAD
 ﻿using Application.DTOs;
 using Application.Interfaces;
 using Core.Interfaces;
 using Entities.DTOs;
 using Microsoft.AspNetCore.Identity;
+=======
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Application.DTOs;
+using Application.Interfaces;
+using Core.Interfaces;
+using Entities.DTOs;
+>>>>>>> origin/dev
 
 namespace Application.Services.Implementations
 {
     public class UserService : IUserService
     {
         private readonly IUserRepository _userRepository;
+<<<<<<< HEAD
         private readonly IPasswordHasher<User> _passwordHasher;
 
         public UserService(IUserRepository userRepository, IPasswordHasher<User> passwordHasher)
@@ -32,6 +44,12 @@ namespace Application.Services.Implementations
             user.PasswordHash = _passwordHasher.HashPassword(user, password);
             await _userRepository.AddAsync(user);
             return MapToDto(user);
+=======
+
+        public UserService(IUserRepository userRepository)
+        {
+            _userRepository = userRepository;
+>>>>>>> origin/dev
         }
 
         public async Task<UserDto> GetUserByIdAsync(string userId)
@@ -49,7 +67,10 @@ namespace Application.Services.Implementations
         public async Task AddUserAsync(UserDto userDto)
         {
             var user = MapToEntity(userDto);
+<<<<<<< HEAD
             user.PasswordHash = _passwordHasher.HashPassword(user, userDto.Password);
+=======
+>>>>>>> origin/dev
             await _userRepository.AddAsync(user);
         }
 

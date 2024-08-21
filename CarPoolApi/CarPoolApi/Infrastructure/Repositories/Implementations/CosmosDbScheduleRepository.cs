@@ -13,10 +13,16 @@ namespace Infrastructure.Repositories.Implementations
             _container = cosmosClient.GetContainer(databaseName, containerName);
         }
 
+<<<<<<< HEAD
         public async Task<Schedule> GetByIdAsync(Guid scheduleId)
         {
             System.Diagnostics.Debug.WriteLine("scheduleId", scheduleId);
             var response = await _container.ReadItemAsync<Schedule>(scheduleId.ToString(), new PartitionKey(scheduleId.ToString()));
+=======
+        public async Task<Schedule> GetByIdAsync(Guid id)
+        {
+            var response = await _container.ReadItemAsync<Schedule>(id.ToString(), new PartitionKey(id.ToString()));
+>>>>>>> origin/dev
             return response.Resource;
         }
 
@@ -34,13 +40,19 @@ namespace Infrastructure.Repositories.Implementations
 
         public async Task AddAsync(Schedule schedule)
         {
+<<<<<<< HEAD
             schedule.id = schedule.ScheduleId.ToString(); // Ensure `id` matches `ScheduleId`
+=======
+>>>>>>> origin/dev
             await _container.CreateItemAsync(schedule, new PartitionKey(schedule.ScheduleId.ToString()));
         }
 
         public async Task UpdateAsync(Schedule schedule)
         {
+<<<<<<< HEAD
             schedule.id = schedule.ScheduleId.ToString(); // Ensure `id` matches `ScheduleId`
+=======
+>>>>>>> origin/dev
             await _container.UpsertItemAsync(schedule, new PartitionKey(schedule.ScheduleId.ToString()));
         }
 

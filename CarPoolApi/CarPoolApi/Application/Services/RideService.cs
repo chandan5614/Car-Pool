@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 ﻿using Application.DTOs;
+=======
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Application.DTOs;
+>>>>>>> origin/dev
 using Application.Interfaces;
 using Core.Interfaces;
 using Entities.DTOs;
