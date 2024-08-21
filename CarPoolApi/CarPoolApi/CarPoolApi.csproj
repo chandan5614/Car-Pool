@@ -52,4 +52,8 @@
     <Folder Include="Utils\" />
     <Folder Include="Utils\Helpers\" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Remove="appsettings.json" />
+    <Content Remove="appsettings.Development.json" />
+  </ItemGroup>
 </Project>
