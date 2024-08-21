@@ -45,6 +45,7 @@ _ReSharper*
 *.svd
 *.suo
 *.sln.cache
+*.assets.cache
 *.ncb
 *.opendb
 *.tlog
