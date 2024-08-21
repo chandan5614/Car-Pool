@@ -23,7 +23,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
 // JWT Authentication configuration
-var key = Encoding.ASCII.GetBytes(Environment.GetEnvironmentVariable("JWT_SECRET"));
+// JWT Authentication configuration
+var jwtSecret = Environment.GetEnvironmentVariable("JWT_SECRET");
+if (string.IsNullOrEmpty(jwtSecret))
+{
+    throw new InvalidOperationException("JWT_SECRET is not set or is empty.");
+}
+var key = Encoding.ASCII.GetBytes(jwtSecret);
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {

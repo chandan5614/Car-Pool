@@ -34,6 +34,8 @@
     <None Remove="API\Models\" />
     <None Remove="Utils\" />
     <None Remove="Utils\Helpers\" />
+    <None Remove=".env" />
+    <None Remove=".gitignore" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Core\" />
