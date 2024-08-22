@@ -71,7 +71,7 @@ namespace Application.Services.Implementations
                 UserId = user.UserId,
                 Name = user.Name,
                 Email = user.Email,
-                Role = user.Role.ToString(), // Assuming UserRole is an enum
+                Role = user.Role.ToString(),
                 VehicleDetails = user.VehicleDetails != null ? new VehicleDetailsDto
                 {
                     Make = user.VehicleDetails.Make,
@@ -111,7 +111,7 @@ namespace Application.Services.Implementations
                     RatingId = r.RatingId,
                     RideId = r.RideId,
                     UserId = r.UserId,
-                    RatingValue = r.Rating, // Correctly mapping Rating to RatingValue
+                    RatingValue = r.Rating,
                     Comments = r.Comments,
                     Timestamp = r.Timestamp
                 }).ToList() ?? new List<Rating>()

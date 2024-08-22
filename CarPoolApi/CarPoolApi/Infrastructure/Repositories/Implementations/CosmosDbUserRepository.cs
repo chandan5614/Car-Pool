@@ -105,7 +105,14 @@ namespace Infrastructure.Repositories.Implementations
             while (iterator.HasMoreResults)
             {
                 var response = await iterator.ReadNextAsync();
-                results.AddRange(response);
+                if (response != null)
+                {
+                    results.AddRange(response);
+                }
+                else
+                {
+                    Console.WriteLine("Unexpected null response from Cosmos DB query.");
+                }
             }
 
             return results.FirstOrDefault();

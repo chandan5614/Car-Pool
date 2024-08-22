@@ -25,7 +25,7 @@ namespace CarPoolApi.API.Controllers
             var user = await _userService.AuthenticateAsync(model.Email, model.Password);
             if (user == null) return Unauthorized();
 
-            var secretKey = _configuration["Jwt:Secret"];
+            var secretKey = Environment.GetEnvironmentVariable("JWT_SECRET");
             var issuer = _configuration["Jwt:Issuer"];
             var audience = _configuration["Jwt:Audience"];
 
