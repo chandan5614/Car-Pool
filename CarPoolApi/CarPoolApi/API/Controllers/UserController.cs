@@ -2,11 +2,13 @@
 using Application.Interfaces;
 using Application.DTOs;
 using CarPoolApi.API.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;
