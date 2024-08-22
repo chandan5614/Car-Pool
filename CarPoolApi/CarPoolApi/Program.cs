@@ -15,9 +15,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Load .env file
 Env.Load();
 
-// Configure the URLs to be used by the application
-builder.WebHost.UseUrls("https://localhost:7026", "http://localhost:5026");
-
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

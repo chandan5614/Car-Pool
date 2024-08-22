@@ -36,8 +36,6 @@
     <None Remove="Utils\" />
     <None Remove="Utils\Helpers\" />
     <None Remove=".env" />
-    <None Remove="Infrastructure\Services\" />
-    <None Remove="Infrastructure\Services\Implementations\" />
     <None Remove="API\Controllers\" />
     <None Remove="API\Models\" />
   </ItemGroup>
@@ -59,8 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Remove="appsettings.Development.json" />
-    <Folder Include="Infrastructure\Services\" />
-    <Folder Include="Infrastructure\Services\Implementations\" />
     <Folder Include="API\Controllers\" />
     <Folder Include="API\Models\" />
   </ItemGroup>
