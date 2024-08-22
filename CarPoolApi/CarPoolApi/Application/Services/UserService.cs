@@ -72,22 +72,22 @@ namespace Application.Services.Implementations
                 Name = user.Name,
                 Email = user.Email,
                 Role = user.Role.ToString(), // Assuming UserRole is an enum
-                VehicleDetails = new VehicleDetailsDto
+                VehicleDetails = user.VehicleDetails != null ? new VehicleDetailsDto
                 {
                     Make = user.VehicleDetails.Make,
                     Model = user.VehicleDetails.Model,
                     Year = user.VehicleDetails.Year,
                     LicensePlate = user.VehicleDetails.LicensePlate
-                },
-                Ratings = user.Ratings.Select(r => new RatingDto
+                } : null,
+                Ratings = user.Ratings?.Select(r => new RatingDto
                 {
-                    // Map Rating to RatingDto
-                    // Assuming RatingDto has similar properties
-                    // Example:
-                    // RatingId = r.RatingId,
-                    // Score = r.Score,
-                    // Comment = r.Comment
-                }).ToList()
+                    RatingId = r.RatingId,
+                    RideId = r.RideId,
+                    UserId = user.UserId,
+                    Rating = r.RatingValue, 
+                    Comments = r.Comments,
+                    Timestamp = r.Timestamp
+                }).ToList() ?? new List<RatingDto>()
             };
         }
 
@@ -98,23 +98,23 @@ namespace Application.Services.Implementations
                 UserId = userDto.UserId,
                 Name = userDto.Name,
                 Email = userDto.Email,
-                Role = Enum.Parse<UserRole>(userDto.Role), // Assuming UserRole is an enum
-                VehicleDetails = new Vehicle
+                Role = Enum.Parse<UserRole>(userDto.Role),
+                VehicleDetails = userDto.VehicleDetails != null ? new Vehicle
                 {
                     Make = userDto.VehicleDetails.Make,
                     Model = userDto.VehicleDetails.Model,
                     Year = userDto.VehicleDetails.Year,
                     LicensePlate = userDto.VehicleDetails.LicensePlate
-                },
-                Ratings = userDto.Ratings.Select(r => new Rating
+                } : null,
+                Ratings = userDto.Ratings?.Select(r => new Rating
                 {
-                    // Map RatingDto to Rating
-                    // Assuming Rating has similar properties
-                    // Example:
-                    // RatingId = r.RatingId,
-                    // Score = r.Score,
-                    // Comment = r.Comment
-                }).ToList()
+                    RatingId = r.RatingId,
+                    RideId = r.RideId,
+                    UserId = r.UserId,
+                    RatingValue = r.Rating, // Correctly mapping Rating to RatingValue
+                    Comments = r.Comments,
+                    Timestamp = r.Timestamp
+                }).ToList() ?? new List<Rating>()
             };
         }
     }

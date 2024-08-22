@@ -6,8 +6,8 @@
         public string Name { get; set; }
         public string Email { get; set; }
         public UserRole Role { get; set; }
-        public Vehicle VehicleDetails { get; set; }
-        public ICollection<Rating> Ratings { get; set; }
+        public Vehicle? VehicleDetails { get; set; }
+        public ICollection<Rating>? Ratings { get; set; }
         public string PasswordHash { get; set; }
     }
 
