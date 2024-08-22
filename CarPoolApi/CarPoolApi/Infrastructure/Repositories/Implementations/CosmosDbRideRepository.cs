@@ -15,8 +15,27 @@ namespace Infrastructure.Repositories.Implementations
 
         public async Task<Ride> GetByIdAsync(Guid id)
         {
-            var response = await _container.ReadItemAsync<Ride>(id.ToString(), new PartitionKey(id.ToString()));
-            return response.Resource;
+            try
+            {
+                var query = new QueryDefinition("SELECT * FROM c WHERE c.RideId = @rideId")
+                    .WithParameter("@rideId", id.ToString());
+
+                using (var queryIterator = _container.GetItemQueryIterator<Ride>(query))
+                {
+                    if (queryIterator.HasMoreResults)
+                    {
+                        var response = await queryIterator.ReadNextAsync();
+                        return response.FirstOrDefault();
+                    }
+                }
+            }
+            catch (CosmosException ex)
+            {
+                Console.WriteLine($"Cosmos DB error: {ex.Message}, ID: {id}");
+                throw;
+            }
+
+            return null;
         }
 
         public async Task<IEnumerable<Ride>> GetAllAsync()

@@ -1,5 +1,8 @@
 ﻿using Microsoft.Azure.Cosmos;
 using Core.Interfaces;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories.Implementations
 {
@@ -12,17 +15,30 @@ namespace Infrastructure.Repositories.Implementations
             _container = cosmosClient.GetContainer(databaseName, containerName);
         }
 
-        public async Task<Entities.DTOs.User> GetByIdAsync(Guid id)
+        public async Task<Entities.DTOs.User> GetByIdAsync(Guid userId)
         {
             try
             {
-                var response = await _container.ReadItemAsync<Entities.DTOs.User>(id.ToString(), new PartitionKey(id.ToString()));
-                return response.Resource;
+                // Query to find the document by UserId
+                var queryDefinition = new QueryDefinition("SELECT * FROM c WHERE c.UserId = @UserId")
+                    .WithParameter("@UserId", userId.ToString());
+
+                using (var queryIterator = _container.GetItemQueryIterator<Entities.DTOs.User>(queryDefinition))
+                {
+                    if (queryIterator.HasMoreResults)
+                    {
+                        var response = await queryIterator.ReadNextAsync();
+                        return response.FirstOrDefault();
+                    }
+                }
             }
-            catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
+            catch (CosmosException ex)
             {
-                return null; // Handle not found case
+                Console.WriteLine($"Cosmos DB error: {ex.Message}, UserId: {userId}");
+                throw;
             }
+
+            return null;
         }
 
         public async Task<IEnumerable<Entities.DTOs.User>> GetAllAsync()
@@ -49,15 +65,33 @@ namespace Infrastructure.Repositories.Implementations
             await _container.UpsertItemAsync(user, new PartitionKey(user.UserId.ToString()));
         }
 
-        public async Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid userId)
         {
             try
             {
-                await _container.DeleteItemAsync<Entities.DTOs.User>(id.ToString(), new PartitionKey(id.ToString()));
+                // Query to find the document by UserId
+                var queryDefinition = new QueryDefinition("SELECT * FROM c WHERE c.UserId = @UserId")
+                    .WithParameter("@UserId", userId.ToString());
+
+                using (var queryIterator = _container.GetItemQueryIterator<Entities.DTOs.User>(queryDefinition))
+                {
+                    if (queryIterator.HasMoreResults)
+                    {
+                        var response = await queryIterator.ReadNextAsync();
+                        var user = response.FirstOrDefault();
+
+                        if (user != null)
+                        {
+                            // Use the retrieved document's id for deletion
+                            await _container.DeleteItemAsync<Entities.DTOs.User>(user.UserId.ToString("D"), new PartitionKey(user.UserId.ToString()));
+                        }
+                    }
+                }
             }
-            catch (CosmosException ex) when (ex.StatusCode == System.Net.HttpStatusCode.NotFound)
+            catch (CosmosException ex)
             {
-                // Handle not found case
+                Console.WriteLine($"Cosmos DB error: {ex.Message}, UserId: {userId}");
+                throw;
             }
         }
 
