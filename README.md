@@ -10,8 +10,6 @@ UniPool is a car-pooling application designed to facilitate transportation for i
 - [Configuration](#configuration)
 - [Running the Application](#running-the-application)
 - [Testing](#testing)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Features
 
