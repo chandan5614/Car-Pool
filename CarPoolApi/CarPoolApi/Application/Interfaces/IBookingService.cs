@@ -2,16 +2,16 @@
 
 namespace Core.Interfaces
 {
-    public interface IBookingRepository
+    public interface IBookingService
     {
-        Task<Booking> GetByIdAsync(Guid bookingId);
-        Task<IEnumerable<Booking>> GetAllAsync();
-        Task AddAsync(Booking booking);
-        Task UpdateAsync(Booking booking);
-        Task DeleteAsync(Guid bookingId);
+        Task<Booking> GetBookingByIdAsync(Guid bookingId);
+        Task<IEnumerable<Booking>> GetAllBookingsAsync();
         Task<IEnumerable<Booking>> GetBookingsByRideAsync(Guid rideId);
         Task<IEnumerable<Booking>> GetBookingsByUserAsync(Guid userId);
         Task<IEnumerable<Booking>> GetBookingsByStatusAsync(string status);
         Task<int> GetBookingCountByRideAsync(Guid rideId);
+        Task<bool> AddBookingAsync(Booking booking);
+        Task<bool> UpdateBookingAsync(Booking booking);
+        Task<bool> DeleteBookingAsync(Guid bookingId);
     }
 }

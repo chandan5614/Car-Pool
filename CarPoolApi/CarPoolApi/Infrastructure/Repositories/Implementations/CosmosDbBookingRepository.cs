@@ -1,9 +1,6 @@
 ﻿using Core.Interfaces;
 using Entities.DTOs;
 using Microsoft.Azure.Cosmos;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories.Implementations
 {
@@ -18,24 +15,14 @@ namespace Infrastructure.Repositories.Implementations
 
         public async Task<Booking> GetByIdAsync(Guid bookingId)
         {
-            try
-            {
-                var query = new QueryDefinition("SELECT * FROM c WHERE c.BookingId = @BookingId")
-                    .WithParameter("@BookingId", bookingId.ToString());
+            var query = new QueryDefinition("SELECT * FROM c WHERE c.BookingId = @BookingId")
+                .WithParameter("@BookingId", bookingId.ToString());
 
-                using (var queryIterator = _container.GetItemQueryIterator<Booking>(query))
-                {
-                    if (queryIterator.HasMoreResults)
-                    {
-                        var response = await queryIterator.ReadNextAsync();
-                        return response.FirstOrDefault();
-                    }
-                }
-            }
-            catch (CosmosException ex)
+            using var queryIterator = _container.GetItemQueryIterator<Booking>(query);
+            if (queryIterator.HasMoreResults)
             {
-                Console.WriteLine($"Cosmos DB error: {ex.Message}, BookingId: {bookingId}");
-                throw;
+                var response = await queryIterator.ReadNextAsync();
+                return response.FirstOrDefault();
             }
 
             return null;
@@ -57,43 +44,28 @@ namespace Infrastructure.Repositories.Implementations
 
         public async Task AddAsync(Booking booking)
         {
-            booking.BookingId = booking.BookingId;
             await _container.CreateItemAsync(booking, new PartitionKey(booking.UserId.ToString()));
         }
 
         public async Task UpdateAsync(Booking booking)
         {
-            booking.BookingId = booking.BookingId;
             await _container.UpsertItemAsync(booking, new PartitionKey(booking.UserId.ToString()));
         }
 
         public async Task DeleteAsync(Guid bookingId)
         {
-            try
-            {
-                // Query to find the document by BookingId
-                var query = new QueryDefinition("SELECT * FROM c WHERE c.BookingId = @BookingId")
-                    .WithParameter("@BookingId", bookingId.ToString());
+            var query = new QueryDefinition("SELECT * FROM c WHERE c.BookingId = @BookingId")
+                .WithParameter("@BookingId", bookingId.ToString());
 
-                using (var queryIterator = _container.GetItemQueryIterator<Booking>(query))
+            using var queryIterator = _container.GetItemQueryIterator<Booking>(query);
+            if (queryIterator.HasMoreResults)
+            {
+                var response = await queryIterator.ReadNextAsync();
+                var booking = response.FirstOrDefault();
+                if (booking != null)
                 {
-                    if (queryIterator.HasMoreResults)
-                    {
-                        var response = await queryIterator.ReadNextAsync();
-                        var booking = response.FirstOrDefault();
-
-                        if (booking != null)
-                        {
-                            // Use the retrieved document's id for deletion
-                            await _container.DeleteItemAsync<Booking>(booking.BookingId.ToString("D"), new PartitionKey(booking.UserId.ToString()));
-                        }
-                    }
+                    await _container.DeleteItemAsync<Booking>(booking.BookingId.ToString("D"), new PartitionKey(booking.UserId.ToString()));
                 }
-            }
-            catch (CosmosException ex)
-            {
-                Console.WriteLine($"Cosmos DB error: {ex.Message}, BookingId: {bookingId}");
-                throw;
             }
         }
 
@@ -101,6 +73,7 @@ namespace Infrastructure.Repositories.Implementations
         {
             var query = new QueryDefinition("SELECT * FROM c WHERE c.RideId = @RideId")
                 .WithParameter("@RideId", rideId.ToString());
+
             var iterator = _container.GetItemQueryIterator<Booking>(query);
             var results = new List<Booking>();
 
@@ -117,6 +90,7 @@ namespace Infrastructure.Repositories.Implementations
         {
             var query = new QueryDefinition("SELECT * FROM c WHERE c.UserId = @UserId")
                 .WithParameter("@UserId", userId.ToString());
+
             var iterator = _container.GetItemQueryIterator<Booking>(query);
             var results = new List<Booking>();
 
@@ -127,6 +101,38 @@ namespace Infrastructure.Repositories.Implementations
             }
 
             return results;
+        }
+
+        public async Task<IEnumerable<Booking>> GetBookingsByStatusAsync(string status)
+        {
+            var query = new QueryDefinition("SELECT * FROM c WHERE c.Status = @Status")
+                .WithParameter("@Status", status);
+
+            var iterator = _container.GetItemQueryIterator<Booking>(query);
+            var results = new List<Booking>();
+
+            while (iterator.HasMoreResults)
+            {
+                var response = await iterator.ReadNextAsync();
+                results.AddRange(response);
+            }
+
+            return results;
+        }
+
+        public async Task<int> GetBookingCountByRideAsync(Guid rideId)
+        {
+            var query = new QueryDefinition("SELECT VALUE COUNT(1) FROM c WHERE c.RideId = @RideId")
+                .WithParameter("@RideId", rideId.ToString());
+
+            using var queryIterator = _container.GetItemQueryIterator<int>(query);
+            if (queryIterator.HasMoreResults)
+            {
+                var response = await queryIterator.ReadNextAsync();
+                return response.FirstOrDefault();
+            }
+
+            return 0;
         }
     }
 }

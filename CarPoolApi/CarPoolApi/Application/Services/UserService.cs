@@ -34,9 +34,9 @@ namespace Application.Services.Implementations
             return MapToDto(user);
         }
 
-        public async Task<UserDto> GetUserByIdAsync(string userId)
+        public async Task<UserDto> GetUserByIdAsync(Guid userId)
         {
-            var user = await _userRepository.GetByIdAsync(Guid.Parse(userId));
+            var user = await _userRepository.GetByIdAsync(userId);
             return user == null ? null : MapToDto(user);
         }
 
@@ -59,9 +59,9 @@ namespace Application.Services.Implementations
             await _userRepository.UpdateAsync(user);
         }
 
-        public async Task DeleteUserAsync(string userId)
+        public async Task DeleteUserAsync(Guid userId)
         {
-            await _userRepository.DeleteAsync(Guid.Parse(userId));
+            await _userRepository.DeleteAsync(userId);
         }
 
         private UserDto MapToDto(User user)
@@ -84,7 +84,7 @@ namespace Application.Services.Implementations
                     RatingId = r.RatingId,
                     RideId = r.RideId,
                     UserId = user.UserId,
-                    Rating = r.RatingValue, 
+                    Rating = r.RatingValue,
                     Comments = r.Comments,
                     Timestamp = r.Timestamp
                 }).ToList() ?? new List<RatingDto>()

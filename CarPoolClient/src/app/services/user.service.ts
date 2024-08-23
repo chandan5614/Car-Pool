@@ -25,6 +25,7 @@ export class UserService {
   }
 
   loginUser(user: LoginModel): Observable<any> {
+    console.log(`${this.authUrl}/login`);
     return this.http.post<any>(`${this.authUrl}/login`, user);
   }
 }

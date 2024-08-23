@@ -1,8 +1,5 @@
-﻿using Microsoft.Azure.Cosmos;
-using Core.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Core.Interfaces;
+using Microsoft.Azure.Cosmos;
 
 namespace Infrastructure.Repositories.Implementations
 {
@@ -19,7 +16,6 @@ namespace Infrastructure.Repositories.Implementations
         {
             try
             {
-                // Query to find the document by UserId
                 var queryDefinition = new QueryDefinition("SELECT * FROM c WHERE c.UserId = @UserId")
                     .WithParameter("@UserId", userId.ToString());
 
@@ -69,7 +65,6 @@ namespace Infrastructure.Repositories.Implementations
         {
             try
             {
-                // Query to find the document by UserId
                 var queryDefinition = new QueryDefinition("SELECT * FROM c WHERE c.UserId = @UserId")
                     .WithParameter("@UserId", userId.ToString());
 
@@ -82,7 +77,6 @@ namespace Infrastructure.Repositories.Implementations
 
                         if (user != null)
                         {
-                            // Use the retrieved document's id for deletion
                             await _container.DeleteItemAsync<Entities.DTOs.User>(user.UserId.ToString("D"), new PartitionKey(user.UserId.ToString()));
                         }
                     }
@@ -105,14 +99,7 @@ namespace Infrastructure.Repositories.Implementations
             while (iterator.HasMoreResults)
             {
                 var response = await iterator.ReadNextAsync();
-                if (response != null)
-                {
-                    results.AddRange(response);
-                }
-                else
-                {
-                    Console.WriteLine("Unexpected null response from Cosmos DB query.");
-                }
+                results.AddRange(response);
             }
 
             return results.FirstOrDefault();
