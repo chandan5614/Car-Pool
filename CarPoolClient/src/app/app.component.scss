@@ -1,0 +1,33 @@
+.mat-toolbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.sidenav-container {
+  height: 100vh;
+  margin-top: 64px; // Height of the toolbar
+}
+
+.sidenav {
+  width: 240px;
+}
+
+.footer {
+  background-color: #f1f1f1;
+  padding: 10px;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.footer-content {
+  text-align: center;
+  padding: 10px;
+  background-color: #f1f1f1;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
