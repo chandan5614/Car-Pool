@@ -1,15 +1,15 @@
 ﻿using Application.Interfaces;
 using Application.Services.Implementations;
 using Core.Interfaces;
+using Core.Services;
 using Infrastructure.Repositories.Implementations;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Azure.Cosmos;
 using Microsoft.OpenApi.Models;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Azure.Cosmos;
 using DotNetEnv;
-using Core.Services;
 
 // Load .env file
 Env.Load();
@@ -139,8 +139,10 @@ builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IRideService, RideService>();
 builder.Services.AddScoped<IPaymentService, PaymentService>();
 builder.Services.AddScoped<IRatingService, RatingService>();
-// builder.Services.AddScoped<IReportService, ReportService>();
 builder.Services.AddScoped<IScheduleService, ScheduleService>();
+
+// Register admin services
+builder.Services.AddScoped<IAdminService, AdminService>();
 
 builder.Services.AddScoped<IPasswordHasher<Entities.DTOs.User>, PasswordHasher<Entities.DTOs.User>>();
 

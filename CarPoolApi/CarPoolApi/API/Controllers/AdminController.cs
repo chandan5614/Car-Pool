@@ -25,8 +25,7 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
-                // Log exception here
-                return StatusCode(500, "Internal server error");
+                return BadRequest(new { error = ex.Message });
             }
         }
 
@@ -44,8 +43,7 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
-                // Log exception here
-                return StatusCode(500, "Internal server error");
+                return BadRequest(new { error = ex.Message });
             }
         }
 
@@ -59,8 +57,7 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
-                // Log exception here
-                return StatusCode(500, "Internal server error");
+                return BadRequest(new { error = ex.Message });
             }
         }
 
@@ -79,8 +76,7 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
-                // Log exception here
-                return StatusCode(500, "Internal server error");
+                return BadRequest(new { error = ex.Message });
             }
         }
 
@@ -99,8 +95,7 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
-                // Log exception here
-                return StatusCode(500, "Internal server error");
+                return BadRequest(new { error = ex.Message });
             }
         }
 
@@ -114,8 +109,7 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
-                // Log exception here
-                return StatusCode(500, "Internal server error");
+                return BadRequest(new { error = ex.Message });
             }
         }
 
@@ -134,8 +128,7 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
-                // Log exception here
-                return StatusCode(500, "Internal server error");
+                return BadRequest(new { error = ex.Message });
             }
         }
 
@@ -158,8 +151,7 @@ namespace API.Controllers
             }
             catch (Exception ex)
             {
-                // Log exception here
-                return StatusCode(500, "Internal server error");
+                return BadRequest(new { error = ex.Message });
             }
         }
     }

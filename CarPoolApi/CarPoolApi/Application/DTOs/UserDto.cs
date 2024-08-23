@@ -26,6 +26,6 @@
     {
         public string DocumentType { get; set; }
         public string DocumentUrl { get; set; }
-        public DateTime UploadDate { get; set; }
+        public DateTime? UploadDate { get; set; }
     }
 }

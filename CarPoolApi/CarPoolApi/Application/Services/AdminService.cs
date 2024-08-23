@@ -3,10 +3,6 @@ using Application.Interfaces;
 using Core.Interfaces;
 using Entities.DTOs;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Core.Services
 {
@@ -97,7 +93,13 @@ namespace Core.Services
                     Rating = r.RatingValue,
                     Comments = r.Comments,
                     Timestamp = r.Timestamp
-                }).ToList() ?? new List<RatingDto>()
+                }).ToList() ?? new List<RatingDto>(),
+                VerificationDocuments = user.VerificationDocuments?.Select(d => new VerificationDocumentDto
+                {
+                    DocumentType = d.DocumentType,
+                    DocumentUrl = d.DocumentUrl,
+                    UploadDate = d.UploadDate // Ensure this is nullable if your model allows it
+                }).ToList() ?? new List<VerificationDocumentDto>()
             };
         }
 
@@ -118,7 +120,7 @@ namespace Core.Services
                 } : null,
                 Ratings = userDto.Ratings?.Select(r => new Rating
                 {
-                    RatingId = r.RatingId,
+                    RatingId = r.RatingId,  
                     RideId = r.RideId,
                     UserId = r.UserId,
                     RatingValue = r.Rating,
