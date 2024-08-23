@@ -11,5 +11,6 @@ namespace Application.Interfaces
         Task DeleteUserAsync(Guid userId);
         Task<UserDto> AuthenticateAsync(string email, string password);
         Task<UserDto> RegisterAsync(string email, string password);
+        Task AddVerificationDocumentAsync(Guid userId, VerificationDocumentDto document);
     }
 }

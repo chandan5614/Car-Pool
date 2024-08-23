@@ -9,11 +9,12 @@ using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Azure.Cosmos;
 using DotNetEnv;
-
-var builder = WebApplication.CreateBuilder(args);
+using Core.Services;
 
 // Load .env file
 Env.Load();
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
@@ -142,6 +143,10 @@ builder.Services.AddScoped<IRatingService, RatingService>();
 builder.Services.AddScoped<IScheduleService, ScheduleService>();
 
 builder.Services.AddScoped<IPasswordHasher<Entities.DTOs.User>, PasswordHasher<Entities.DTOs.User>>();
+
+// Register Blob service
+builder.Services.Configure<AzureBlobStorageOptions>(builder.Configuration.GetSection("AzureBlobStorage"));
+builder.Services.AddTransient<IBlobService, BlobService>();
 
 var app = builder.Build();
 

@@ -64,6 +64,25 @@ namespace Application.Services.Implementations
             await _userRepository.DeleteAsync(userId);
         }
 
+        public async Task AddVerificationDocumentAsync(Guid userId, VerificationDocumentDto document)
+        {
+            var user = await _userRepository.GetByIdAsync(userId);
+            if (user != null)
+            {
+                if (user.VerificationDocuments == null)
+                {
+                    user.VerificationDocuments = new List<VerificationDocument>();
+                }
+                user.VerificationDocuments.Add(new VerificationDocument
+                {
+                    DocumentType = document.DocumentType,
+                    DocumentUrl = document.DocumentUrl,
+                    UploadDate = document.UploadDate
+                });
+                await _userRepository.UpdateAsync(user);
+            }
+        }
+
         private UserDto MapToDto(User user)
         {
             return new UserDto
