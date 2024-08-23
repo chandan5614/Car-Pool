@@ -30,7 +30,10 @@ Tech Stack
 -   **Database**: Azure Cosmos DB
 -   **Authentication**: JWT (JSON Web Tokens)
 -   **Environment Management**: DotNetEnv
--   **Architecture**: Clean Architecture with DTOs for data transfer
+-   **Frontend**: Angular 18
+-   **State Management**: NgRx
+-   **Styling**: Angular Material
+-   **Server-Side Rendering (SSR)**: Angular Universal (optional)
 
 Architecture
 ------------
@@ -49,10 +52,12 @@ Installation
 -   [.NET 6 SDK](https://dotnet.microsoft.com/download/dotnet/6.0)
 -   [Visual Studio for Mac](https://visualstudio.microsoft.com/vs/mac/) or [Visual Studio Code](https://code.visualstudio.com/)
 -   [Azure Cosmos DB Account](https://azure.microsoft.com/en-us/services/cosmos-db/)
+-   [Node.js](https://nodejs.org/)
+-   Angular CLI
 
 ### Steps
 
-1.  Clone the repository:
+1.  **Clone the repository:**
 
     bash
 
@@ -61,7 +66,7 @@ Installation
     `git clone https://github.com/your-username/UniPool.git
     cd UniPool`
 
-2.  Install dependencies:
+2.  **Set up the backend:**
 
     bash
 
@@ -69,7 +74,7 @@ Installation
 
     `dotnet restore`
 
-3.  Set up environment variables by creating a `.env` file in the root directory:
+3.  **Set up environment variables by creating a `.env` file in the root directory:**
 
     plaintext
 
@@ -84,6 +89,24 @@ Installation
     PAYMENT_CONTAINER_NAME=Payments
     RATING_CONTAINER_NAME=Ratings
     SCHEDULE_CONTAINER_NAME=Schedules`
+
+4.  **Set up the Angular client:**
+
+    -   Navigate to the Angular client directory:
+
+        bash
+
+        Copy code
+
+        `cd CarPoolClient`
+
+    -   Install dependencies:
+
+        bash
+
+        Copy code
+
+        `npm install`
 
 Configuration
 -------------
@@ -103,7 +126,7 @@ Make sure your Azure Cosmos DB instance is correctly set up and connected via th
 Running the Application
 -----------------------
 
-1.  Run the application:
+1.  **Run the backend:**
 
     bash
 
@@ -111,7 +134,15 @@ Running the Application
 
     `dotnet run`
 
-2.  Access the Swagger UI for API documentation and testing:
+2.  **Run the Angular client:**
+
+    bash
+
+    Copy code
+
+    `npm start`
+
+3.  **Access the Swagger UI for API documentation and testing:**
 
     -   Development: `https://localhost:7026/swagger`
     -   Production: Replace with your production URL.
