@@ -1,5 +1,5 @@
-﻿using Core.Interfaces;
-using Microsoft.Azure.Cosmos;
+﻿using Microsoft.Azure.Cosmos;
+using Core.Interfaces;
 
 namespace Infrastructure.Repositories.Implementations
 {
@@ -103,6 +103,22 @@ namespace Infrastructure.Repositories.Implementations
             }
 
             return results.FirstOrDefault();
+        }
+
+        public async Task<IEnumerable<Entities.DTOs.User>> GetUsersByRoleAsync(string role)
+        {
+            var queryDefinition = new QueryDefinition("SELECT * FROM c WHERE c.Role = @Role")
+                .WithParameter("@Role", role);
+            var iterator = _container.GetItemQueryIterator<Entities.DTOs.User>(queryDefinition);
+            var results = new List<Entities.DTOs.User>();
+
+            while (iterator.HasMoreResults)
+            {
+                var response = await iterator.ReadNextAsync();
+                results.AddRange(response);
+            }
+
+            return results;
         }
     }
 }

@@ -10,5 +10,6 @@ namespace Core.Interfaces
         Task UpdateAsync(User user);
         Task DeleteAsync(Guid userId);
         Task<User> GetByEmailAsync(string email);
+        Task<IEnumerable<User>> GetUsersByRoleAsync(string role);
     }
 }

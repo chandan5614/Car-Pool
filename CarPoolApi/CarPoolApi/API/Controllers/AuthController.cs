@@ -4,7 +4,7 @@ using CarPoolApi.API.Models;
 using CarPoolApi.Utils.Helpers;
 using Microsoft.AspNetCore.Mvc;
 
-namespace CarPoolApi.API.Controllers
+namespace API.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
