@@ -61,8 +61,6 @@ Installation
 
     bash
 
-    Copy code
-
     `git clone https://github.com/your-username/UniPool.git
     cd UniPool`
 
@@ -70,15 +68,11 @@ Installation
 
     bash
 
-    Copy code
-
     `dotnet restore`
 
 3.  **Set up environment variables by creating a `.env` file in the root directory:**
 
     plaintext
-
-    Copy code
 
     `JWT_SECRET=your_jwt_secret
     COSMOSDB_CONNECTION_STRING=your_cosmosdb_connection_string
@@ -96,15 +90,11 @@ Installation
 
         bash
 
-        Copy code
-
         `cd CarPoolClient`
 
     -   Install dependencies:
 
         bash
-
-        Copy code
 
         `npm install`
 
@@ -130,15 +120,11 @@ Running the Application
 
     bash
 
-    Copy code
-
     `dotnet run`
 
 2.  **Run the Angular client:**
 
     bash
-
-    Copy code
 
     `npm start`
 
